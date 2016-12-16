@@ -9,3 +9,5 @@ out
 gen
 hysing.ipr
 hysing.iws
+.gradle/
+build/
