@@ -13,10 +13,11 @@ public class GithubSpider {
     private static String START_PAGE_NUM = "1";
     private static String START_URL = START_URL_HEAD + START_PAGE_NUM + START_URL_TAIL;
     private static String ASSET_LOCATION = "/Users/cwzeng/Documents/WorkSpace/SpiderData/" + LANGUAGE;
-    public static HashMap<String, User> users = new HashMap<>();
+    static HashMap<String, Candidate> candidates = new HashMap<>();
+    static HashMap<String, Candidate> potentialCandidates = new HashMap<>();
 
     public static void main(String[] args) {
-        Spider.create(new GithubSummaryProcessor()).addUrl(START_URL).addPipeline(new JsonFilePipeline(ASSET_LOCATION))
+        Spider.create(new GithubProcessor()).addUrl(START_URL).addPipeline(new JsonFilePipeline(ASSET_LOCATION))
                 .thread(5).run();
     }
 

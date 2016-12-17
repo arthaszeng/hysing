@@ -2,7 +2,7 @@ package processor;
 
 import us.codecraft.webmagic.Page;
 
-class ElementFetcher {
+class AttributeFetcher {
     static String getEmailByXpath(Page page, String orderNumber) {
         String xpath = "//*[@id=\"user_search_results\"]/div[1]/div[" + orderNumber + "]/div[2]/ul/li[2]/a";
 

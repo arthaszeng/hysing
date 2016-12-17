@@ -1,6 +1,6 @@
 package processor;
 
-public class User {
+public class Candidate {
     private String name;
     private String email;
     private String description;
@@ -67,7 +67,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Candidate{" +
                 "name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
