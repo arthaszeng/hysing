@@ -3,6 +3,8 @@ package processor;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.pipeline.JsonFilePipeline;
 
+import java.util.HashMap;
+
 public class GithubSpider {
 
     private static String LANGUAGE = "Java";
@@ -11,9 +13,10 @@ public class GithubSpider {
     private static String START_PAGE_NUM = "1";
     private static String START_URL = START_URL_HEAD + START_PAGE_NUM + START_URL_TAIL;
     private static String ASSET_LOCATION = "/Users/cwzeng/Documents/WorkSpace/SpiderData/" + LANGUAGE;
+    public static HashMap<String, User> users = new HashMap<>();
 
     public static void main(String[] args) {
-        Spider.create(new GithubProcessor()).addUrl(START_URL).addPipeline(new JsonFilePipeline(ASSET_LOCATION))
+        Spider.create(new GithubSummaryProcessor()).addUrl(START_URL).addPipeline(new JsonFilePipeline(ASSET_LOCATION))
                 .thread(5).run();
     }
 

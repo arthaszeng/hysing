@@ -5,7 +5,33 @@ public class User {
     private String email;
     private String description;
     private String joinedTime;
+    private String repoNumber;
+    private String starNumber;
+    private String followerNumber;
 
+    public String getRepoNumber() {
+        return repoNumber;
+    }
+
+    public void setRepoNumber(String repoNumber) {
+        this.repoNumber = repoNumber;
+    }
+
+    public String getStarNumber() {
+        return starNumber;
+    }
+
+    public void setStarNumber(String starNumber) {
+        this.starNumber = starNumber;
+    }
+
+    public String getFollowerNumber() {
+        return followerNumber;
+    }
+
+    public void setFollowerNumber(String followerNumber) {
+        this.followerNumber = followerNumber;
+    }
 
     public String getName() {
         return name;
@@ -46,6 +72,9 @@ public class User {
                 ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
                 ", joinedTime='" + joinedTime + '\'' +
+                ", repoNumber='" + repoNumber + '\'' +
+                ", starNumber='" + starNumber + '\'' +
+                ", followerNumber='" + followerNumber + '\'' +
                 '}';
     }
 }
