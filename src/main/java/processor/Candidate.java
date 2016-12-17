@@ -2,6 +2,7 @@ package processor;
 
 public class Candidate {
     private String name;
+    private String nickname;
     private String email;
     private String description;
     private String joinedTime;
@@ -33,12 +34,12 @@ public class Candidate {
         this.followerNumber = followerNumber;
     }
 
-    public String getName() {
-        return name;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getEmail() {
@@ -65,10 +66,18 @@ public class Candidate {
         this.joinedTime = joinedTime == null ? "" : joinedTime;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Candidate{" +
-                "name='" + name + '\'' +
+                "nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
                 ", joinedTime='" + joinedTime + '\'' +

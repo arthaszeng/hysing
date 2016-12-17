@@ -19,18 +19,19 @@ public class GithubProcessor implements PageProcessor {
 
             for (int i = 1; i <= MAX_COLUMN_NUM; i++) {
                 Candidate candidate = new Candidate();
-                candidate.setName(getNameByXpath(page, Integer.toString(i)));
+                candidate.setNickname(getNameByXpath(page, Integer.toString(i)));
                 candidate.setDescription(getDesByXpath(page, Integer.toString(i)));
                 candidate.setEmail(getEmailByXpath(page, Integer.toString(i)));
                 candidate.setJoinedTime(getJoinedTimeByXpath(page, Integer.toString(i)));
 
-                page.addTargetRequest(generateRequest(candidate.getName()));
-                GithubSpider.candidates.put(candidate.getName(), candidate);
+                page.addTargetRequest(generateRequest(candidate.getNickname()));
+                GithubSpider.candidates.put(candidate.getNickname(), candidate);
             }
         } else {
             String userName = page.getUrl().regex("https://github\\.com/\\w+.*").replace("https://github\\.com/", "").get();
             Candidate candidate = GithubSpider.candidates.get(userName);
 
+            candidate.setName(getName(page));
             candidate.setRepoNumber(getRepoNum(page));
             candidate.setStarNumber(getStarNum(page));
             candidate.setFollowerNumber(getFollowerNumber(page));

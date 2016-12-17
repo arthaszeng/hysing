@@ -12,6 +12,13 @@ class AttributeFetcher {
                 .get();
     }
 
+
+    static String getName(Page page) {
+        return page.getHtml().css("#js-pjax-container > div > div.col-3.float-left.pr-3 > div.vcard-names-container.py-3.js-sticky.js-user-profile-sticky-fields > h1 > span.vcard-fullname.d-block").get()
+                .replace("<span class=\"vcard-fullname d-block\" itemprop=\"name\">", "")
+                .replace("</span>", "");
+    }
+
     static String getDesByXpath(Page page, String orderNumber) {
         String xpath = "//*[@id=\"user_search_results\"]/div[1]/div[" + orderNumber + "]/div[2]/div";
 
