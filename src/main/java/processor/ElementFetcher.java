@@ -2,7 +2,7 @@ package processor;
 
 import us.codecraft.webmagic.Page;
 
-class fetcher {
+class ElementFetcher {
     static String getEmailByXpath(Page page, String orderNumber) {
         String xpath = "//*[@id=\"user_search_results\"]/div[1]/div[" + orderNumber + "]/div[2]/ul/li[2]/a";
 
@@ -31,11 +31,34 @@ class fetcher {
                 .get();
     }
 
-    static String getPageNumber(Page page) {
-        return page.getUrl().get()
-                .replace("https://github.com/search?p=", "").replace("&q=location%3A%22Chengdu%22&ref=searchresults&type=Users&utf8=%E2%9C%93", "");
+    static String generateRequest(String name) {
+        return "https://github.com/" + name;
     }
 
+    static String getPageNumber(Page page) {
+        return page.getUrl().get()
+                .replace("https://github.com/search?l=Java&p=", "").replace("&q=location%3A%22Chengdu%22&ref=searchresults&type=Users&utf8=%E2%9C%93", "");
+    }
+
+
+    static String getRepoNum(Page page) {
+        return page.getHtml().css("#js-pjax-container > div > div.col-9.float-left.pl-2 > div.user-profile-nav.js-sticky.top-0 > nav > a:nth-child(2) > span").get()
+                .replace("<span class=\"counter\"> ", "")
+                .replace(" </span>", "");
+    }
+
+
+    static String getFollowerNumber(Page page) {
+        return page.getHtml().css("#js-pjax-container > div > div.col-9.float-left.pl-2 > div.user-profile-nav.js-sticky.top-0 > nav > a:nth-child(4) > span").get()
+                .replace("<span class=\"counter\"> ", "")
+                .replace(" </span>", "");
+    }
+
+    static String getStarNum(Page page) {
+        return page.getHtml().css("#js-pjax-container > div > div.col-9.float-left.pl-2 > div.user-profile-nav.js-sticky.top-0 > nav > a:nth-child(3) > span").get()
+                .replace("<span class=\"counter\"> ", "")
+                .replace(" </span>", "");
+    }
 
     static String getJoinedTimeByXpath(Page page, String orderNumber) {
         String xpath = "//*[@id=\"user_search_results\"]/div[1]/div[" + orderNumber + "]/div[2]/ul/li[3]/span/local-time";

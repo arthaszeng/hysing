@@ -4,10 +4,7 @@ import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 
-import java.util.HashMap;
-import java.util.List;
-
-import static processor.Fetcher.*;
+import static processor.ElementFetcher.*;
 import static processor.GithubSpider.users;
 
 public class GithubSummaryProcessor implements PageProcessor {
@@ -35,6 +32,8 @@ public class GithubSummaryProcessor implements PageProcessor {
             User user = users.get(userName);
 
             user.setRepoNumber(getRepoNum(page));
+            user.setStarNumber(getStarNum(page));
+            user.setStarNumber(getFollowerNumber(page));
 
             page.putField(userName, user);
         }
