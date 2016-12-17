@@ -28,8 +28,8 @@ public class GithubProcessor implements PageProcessor {
                 GithubSpider.candidates.put(candidate.getNickname(), candidate);
             }
         } else {
-            String userName = page.getUrl().regex("https://github\\.com/\\w+.*").replace("https://github\\.com/", "").get();
-            Candidate candidate = GithubSpider.candidates.get(userName);
+            String nickname = page.getUrl().regex("https://github\\.com/\\w+.*").replace("https://github\\.com/", "").get();
+            Candidate candidate = GithubSpider.candidates.get(nickname);
 
             candidate.setName(getName(page));
             candidate.setRepoNumber(getRepoNum(page));
@@ -38,12 +38,15 @@ public class GithubProcessor implements PageProcessor {
             candidate.setContribution(getContribution(page));
 
             if (candidateFilter.isMrRight(candidate)) {
-                page.putField(userName, candidate);
+                page.putField(nickname, candidate);
             } else {
-                if (GithubSpider.potentialCandidates.put(userName, candidate) != null) {
-                    GithubSpider.candidates.remove(userName);
+                if (GithubSpider.potentialCandidates.put(nickname, candidate) != null) {
+                    GithubSpider.candidates.remove(nickname);
+                    System.out.println("Oh Oh, " + nickname + " died");
                 }
             }
+
+            System.out.println(candidate);
         }
     }
 

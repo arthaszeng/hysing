@@ -1,6 +1,6 @@
 package processor;
 
-public class Candidate {
+class Candidate {
     private String name;
     private String nickname;
     private String email;
@@ -11,19 +11,19 @@ public class Candidate {
     private String followerNumber;
     private String contribution;
 
-    public String getContribution() {
+    String getContribution() {
         return contribution;
     }
 
-    public void setContribution(String contribution) {
+    void setContribution(String contribution) {
         this.contribution = contribution;
     }
 
-    public String getRepoNumber() {
+    String getRepoNumber() {
         return repoNumber;
     }
 
-    public void setRepoNumber(String repoNumber) {
+    void setRepoNumber(String repoNumber) {
         this.repoNumber = repoNumber;
     }
 
@@ -31,23 +31,23 @@ public class Candidate {
         return starNumber;
     }
 
-    public void setStarNumber(String starNumber) {
+    void setStarNumber(String starNumber) {
         this.starNumber = starNumber;
     }
 
-    public String getFollowerNumber() {
+    String getFollowerNumber() {
         return followerNumber;
     }
 
-    public void setFollowerNumber(String followerNumber) {
+    void setFollowerNumber(String followerNumber) {
         this.followerNumber = followerNumber;
     }
 
-    public String getNickname() {
+    String getNickname() {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
+    void setNickname(String nickname) {
         this.nickname = nickname;
     }
 
@@ -55,7 +55,7 @@ public class Candidate {
         return email;
     }
 
-    public void setEmail(String email) {
+    void setEmail(String email) {
         this.email = email == null ? "" : email;
     }
 
@@ -63,7 +63,7 @@ public class Candidate {
         return description;
     }
 
-    public void setDescription(String description) {
+    void setDescription(String description) {
         this.description = description == null ? "" : description;
     }
 
@@ -71,7 +71,7 @@ public class Candidate {
         return joinedTime;
     }
 
-    public void setJoinedTime(String joinedTime) {
+    void setJoinedTime(String joinedTime) {
         this.joinedTime = joinedTime == null ? "" : joinedTime;
     }
 
@@ -79,7 +79,7 @@ public class Candidate {
         return name;
     }
 
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
 
