@@ -36,7 +36,7 @@ public class User {
     }
 
     public void setJoinedTime(String joinedTime) {
-        this.joinedTime = joinedTime;
+        this.joinedTime = joinedTime == null ? "" : joinedTime;
     }
 
     @Override
