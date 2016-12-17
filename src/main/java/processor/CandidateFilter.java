@@ -6,10 +6,18 @@ public class CandidateFilter {
     private static final int EXPECTED_REPO_NUM = 10;
     public static final int EXPECTED_STAR_NUM = 10;
     private static final int EXPECTED_FOLLOWER_NUM = 10;
+    private static final int EXPECTED_CONTRIBUTION_IN_LAST_YEAR = 30;
 
 
     public boolean isMrRight(Candidate candidate) {
-        return hasEnoughRepo(candidate) && hasEnoughStar(candidate) && hasEnoughFollower(candidate);
+        return hasEnoughRepo(candidate)
+                && hasEnoughStar(candidate)
+                && hasEnoughFollower(candidate)
+                && hasEnoughContribution(candidate);
+    }
+
+    private boolean hasEnoughContribution(Candidate candidate) {
+        return Integer.valueOf(candidate.getContribution()) > EXPECTED_CONTRIBUTION_IN_LAST_YEAR;
     }
 
     private boolean hasEnoughFollower(Candidate candidate) {

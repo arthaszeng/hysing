@@ -9,6 +9,15 @@ public class Candidate {
     private String repoNumber;
     private String starNumber;
     private String followerNumber;
+    private String contribution;
+
+    public String getContribution() {
+        return contribution;
+    }
+
+    public void setContribution(String contribution) {
+        this.contribution = contribution;
+    }
 
     public String getRepoNumber() {
         return repoNumber;
@@ -77,13 +86,15 @@ public class Candidate {
     @Override
     public String toString() {
         return "Candidate{" +
-                "nickname='" + nickname + '\'' +
+                "name='" + name + '\'' +
+                ", nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 ", description='" + description + '\'' +
                 ", joinedTime='" + joinedTime + '\'' +
                 ", repoNumber='" + repoNumber + '\'' +
                 ", starNumber='" + starNumber + '\'' +
                 ", followerNumber='" + followerNumber + '\'' +
+                ", contribution='" + contribution + '\'' +
                 '}';
     }
 }

@@ -13,6 +13,13 @@ class AttributeFetcher {
     }
 
 
+    static String getContribution(Page page) {
+        return page.getHtml().css("#js-pjax-container > div > div.col-9.float-left.pl-2 > div.js-repo-filter.position-relative > div.mt-4 > div.js-contribution-graph > h2").get()
+                .replace("<h2 class=\"f4 text-normal mb-2\"> ", "")
+                .replace(" contributions in the last year </h2>", "")
+                .replace(",", "");
+    }
+
     static String getName(Page page) {
         return page.getHtml().css("#js-pjax-container > div > div.col-3.float-left.pr-3 > div.vcard-names-container.py-3.js-sticky.js-user-profile-sticky-fields > h1 > span.vcard-fullname.d-block").get()
                 .replace("<span class=\"vcard-fullname d-block\" itemprop=\"name\">", "")
