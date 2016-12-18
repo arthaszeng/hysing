@@ -8,10 +8,11 @@ class Candidate {
     private String joinedTime;
     private String repoNumber;
     private String starNumber;
-    private String followerNumber;
+    private String followNum;
     private String contribution;
     private String blog;
     private String language;
+
 
     public Candidate() {
         this.language = GithubSpider.LANGUAGE;
@@ -49,12 +50,12 @@ class Candidate {
         this.starNumber = starNumber;
     }
 
-    String getFollowerNumber() {
-        return followerNumber;
+    String getFollowNum() {
+        return followNum;
     }
 
-    void setFollowerNumber(String followerNumber) {
-        this.followerNumber = followerNumber;
+    void setFollowNum(String followNum) {
+        this.followNum = followNum;
     }
 
     String getNickname() {
@@ -97,6 +98,14 @@ class Candidate {
         this.name = name;
     }
 
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
     @Override
     public String toString() {
         return "Candidate{" +
@@ -108,7 +117,7 @@ class Candidate {
                 ", description='" + description + '\'' +
                 ", repoNumber='" + repoNumber + '\'' +
                 ", starNumber='" + starNumber + '\'' +
-                ", followerNumber='" + followerNumber + '\'' +
+                ", followNum='" + followNum + '\'' +
                 ", contribution='" + contribution + '\'' +
                 ", joinedTime='" + joinedTime + '\'' +
                 '}';

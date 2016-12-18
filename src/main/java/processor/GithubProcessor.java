@@ -1,10 +1,17 @@
 package processor;
 
+import com.google.gson.Gson;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import static processor.AttributeFetcher.*;
+import static processor.CandidateFilter.isInBlanklist;
 
 public class GithubProcessor implements PageProcessor {
     private static int MAX_COLUMN_NUM = 10;
@@ -19,16 +26,16 @@ public class GithubProcessor implements PageProcessor {
             if (targetUrl == null) {
                 page.putField("Candidates", GithubSpider.candidates);
                 page.putField("Potential Candidates", GithubSpider.potentialCandidates);
+                saveSummaryJsonFile();
+                System.out.println( + GithubSpider.candidates.size());
             }
 
             page.addTargetRequest(targetUrl);
 
             for (int i = 1; i <= MAX_COLUMN_NUM; i++) {
                 Candidate candidate = new Candidate();
-                candidate.setNickname(getNameByXpath(page, Integer.toString(i)));
-                candidate.setDescription(getDesByXpath(page, Integer.toString(i)));
-                candidate.setEmail(getEmailByXpath(page, Integer.toString(i)));
-                candidate.setJoinedTime(getJoinedTimeByXpath(page, Integer.toString(i)));
+
+                setAttributeFromSummarizedSite(candidate, page, Integer.toString(i));
 
                 page.addTargetRequest(generateRequest(candidate.getNickname()));
                 GithubSpider.candidates.put(candidate.getNickname(), candidate);
@@ -38,12 +45,11 @@ public class GithubProcessor implements PageProcessor {
             String nickname = page.getUrl().regex("https://github\\.com/\\w+.*").replace("https://github\\.com/", "").get();
             Candidate candidate = GithubSpider.candidates.get(nickname);
 
-            candidate.setName(getName(page));
-            candidate.setRepoNumber(getRepoNum(page));
-            candidate.setStarNumber(getStarNum(page));
-            candidate.setFollowerNumber(getFollowerNumber(page));
-            candidate.setContribution(getContribution(page));
-            candidate.setBlog(getBlogByCss(page));
+            if (!isInBlanklist(nickname)) {
+                setAttributeFromDetailedSite(candidate, page);
+            } else {
+                page.setSkip(true);
+            }
 
             if (candidateFilter.isMrRight(candidate)) {
                 page.putField(nickname, candidate);
@@ -52,8 +58,34 @@ public class GithubProcessor implements PageProcessor {
                 GithubSpider.candidates.remove(nickname);
                 System.out.println("Oh Oh, " + nickname + " died");
             }
+        }
+    }
 
-            System.out.println(candidate);
+
+    private void setAttributeFromSummarizedSite(Candidate candidate, Page page, String columnId) {
+        candidate.setNickname(getNameByXpath(page, columnId));
+        candidate.setDescription(getDesByXpath(page, columnId));
+        candidate.setEmail(getEmailByXpath(page, columnId));
+        candidate.setJoinedTime(getJoinedTimeByXpath(page, columnId));
+    }
+
+    private void setAttributeFromDetailedSite(Candidate candidate, Page page) {
+        candidate.setName(getName(page));
+        candidate.setRepoNumber(getRepoNum(page));
+        candidate.setStarNumber(getStarNum(page));
+        candidate.setFollowNum(getFollowerNumber(page));
+        candidate.setContribution(getContribution(page));
+        candidate.setBlog(getBlogByCss(page));
+    }
+
+    private void saveSummaryJsonFile() {
+        Gson gson = new Gson();
+        try {
+            PrintWriter printWriter = new PrintWriter(new FileWriter(new File("/Users/cwzeng/Documents/WorkSpace/SpiderData/Json/" + GithubSpider.LANGUAGE + "super.json")));
+            printWriter.write(gson.toJson(GithubSpider.candidates));
+            printWriter.close();
+        } catch (IOException e) {
+            System.out.println("write file error");
         }
     }
 
