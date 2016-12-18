@@ -15,6 +15,12 @@ public class GithubProcessor implements PageProcessor {
     public void process(Page page) {
         if (page.getUrl().regex("https://github\\.com/search?.*").match()) {
             String targetUrl = page.getHtml().$("#user_search_results > div.paginate-container > div > a.next_page").links().get();
+
+            if (targetUrl == null) {
+                page.putField("Candidates", GithubSpider.candidates);
+                page.putField("Potential Candidates", GithubSpider.potentialCandidates);
+            }
+
             page.addTargetRequest(targetUrl);
 
             for (int i = 1; i <= MAX_COLUMN_NUM; i++) {
@@ -27,6 +33,7 @@ public class GithubProcessor implements PageProcessor {
                 page.addTargetRequest(generateRequest(candidate.getNickname()));
                 GithubSpider.candidates.put(candidate.getNickname(), candidate);
             }
+
         } else {
             String nickname = page.getUrl().regex("https://github\\.com/\\w+.*").replace("https://github\\.com/", "").get();
             Candidate candidate = GithubSpider.candidates.get(nickname);
@@ -40,17 +47,14 @@ public class GithubProcessor implements PageProcessor {
             if (candidateFilter.isMrRight(candidate)) {
                 page.putField(nickname, candidate);
             } else {
-                if (GithubSpider.potentialCandidates.put(nickname, candidate) != null) {
-                    GithubSpider.candidates.remove(nickname);
-                    System.out.println("Oh Oh, " + nickname + " died");
-                }
+                GithubSpider.potentialCandidates.put(nickname, candidate);
+                GithubSpider.candidates.remove(nickname);
+                System.out.println("Oh Oh, " + nickname + " died");
             }
 
             System.out.println(candidate);
         }
     }
-
-
 
     @Override
     public Site getSite() {

@@ -1,8 +1,8 @@
 package processor;
 
 class Candidate {
-    private String name;
     private String nickname;
+    private String name;
     private String email;
     private String description;
     private String joinedTime;
@@ -10,6 +10,21 @@ class Candidate {
     private String starNumber;
     private String followerNumber;
     private String contribution;
+
+    public Candidate() {
+    }
+
+    public Candidate(String nickname, String name, String email, String description, String joinedTime, String repoNumber, String starNumber, String followerNumber, String contribution) {
+        this.nickname = nickname;
+        this.name = name;
+        this.email = email;
+        this.description = description;
+        this.joinedTime = joinedTime;
+        this.repoNumber = repoNumber;
+        this.starNumber = starNumber;
+        this.followerNumber = followerNumber;
+        this.contribution = contribution;
+    }
 
     String getContribution() {
         return contribution;

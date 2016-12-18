@@ -1,19 +1,23 @@
 package processor;
 
-import java.util.List;
 
 public class CandidateFilter {
-    private static final int EXPECTED_REPO_NUM = 10;
-    public static final int EXPECTED_STAR_NUM = 10;
-    private static final int EXPECTED_FOLLOWER_NUM = 10;
-    private static final int EXPECTED_CONTRIBUTION_IN_LAST_YEAR = 30;
+    private static final int EXPECTED_REPO_NUM = -1;
+    public static final int EXPECTED_STAR_NUM = -1;
+    private static final int EXPECTED_FOLLOWER_NUM = -1;
+    private static final int EXPECTED_CONTRIBUTION_IN_LAST_YEAR = -1;
 
 
     public boolean isMrRight(Candidate candidate) {
         return hasEnoughRepo(candidate)
                 && hasEnoughStar(candidate)
                 && hasEnoughFollower(candidate)
-                && hasEnoughContribution(candidate);
+                && hasEnoughContribution(candidate)
+                && hasEmailAddress(candidate);
+    }
+
+    private boolean hasEmailAddress(Candidate candidate) {
+        return candidate.getEmail() != null;
     }
 
     private boolean hasEnoughContribution(Candidate candidate) {
