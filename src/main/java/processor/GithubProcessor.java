@@ -43,6 +43,7 @@ public class GithubProcessor implements PageProcessor {
             candidate.setStarNumber(getStarNum(page));
             candidate.setFollowerNumber(getFollowerNumber(page));
             candidate.setContribution(getContribution(page));
+            candidate.setBlog(getBlogByCss(page));
 
             if (candidateFilter.isMrRight(candidate)) {
                 page.putField(nickname, candidate);

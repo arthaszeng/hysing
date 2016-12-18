@@ -12,11 +12,18 @@ class AttributeFetcher {
                 .get();
     }
 
+    static String getBlogByCss(Page page) {
+        String result = page.getHtml().css("#js-pjax-container > div > div.col-3.float-left.pr-3 > ul > li:nth-child(3) > a").regex("(?i)\\b((?:[a-z][\\w-]+:(?:/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:\\'\".,<>?«»“”‘’]))").get();
+
+        return result == null ? "" : result;
+    }
+
 
     static String getContribution(Page page) {
         return page.getHtml().css("#js-pjax-container > div > div.col-9.float-left.pl-2 > div.js-repo-filter.position-relative > div.mt-4 > div.js-contribution-graph > h2").get()
                 .replace("<h2 class=\"f4 text-normal mb-2\"> ", "")
                 .replace(" contributions in the last year </h2>", "")
+                .replace(" contribution in the last year </h2>", "")
                 .replace(",", "");
     }
 

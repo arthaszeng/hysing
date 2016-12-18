@@ -9,7 +9,7 @@ public class GithubSpider {
 
     static HashMap<String, Candidate> candidates = new HashMap<>();
     static HashMap<String, Candidate> potentialCandidates = new HashMap<>();
-    private static String LANGUAGE = "Java";
+    public static String LANGUAGE = "Java";
     private static String START_URL_HEAD = "https://github.com/search?l=" + LANGUAGE + "&p=";
     private static String START_URL_TAIL = "&q=location%3A%22Chengdu%22&ref=searchresults&type=Users&utf8=%E2%9C%93";
     private static String START_PAGE_NUM = "1";

@@ -10,20 +10,19 @@ class Candidate {
     private String starNumber;
     private String followerNumber;
     private String contribution;
+    private String blog;
+    private String language;
 
     public Candidate() {
+        this.language = GithubSpider.LANGUAGE;
     }
 
-    public Candidate(String nickname, String name, String email, String description, String joinedTime, String repoNumber, String starNumber, String followerNumber, String contribution) {
-        this.nickname = nickname;
-        this.name = name;
-        this.email = email;
-        this.description = description;
-        this.joinedTime = joinedTime;
-        this.repoNumber = repoNumber;
-        this.starNumber = starNumber;
-        this.followerNumber = followerNumber;
-        this.contribution = contribution;
+    public String getBlog() {
+        return blog;
+    }
+
+    public void setBlog(String blog) {
+        this.blog = blog;
     }
 
     String getContribution() {
@@ -101,15 +100,17 @@ class Candidate {
     @Override
     public String toString() {
         return "Candidate{" +
-                "name='" + name + '\'' +
-                ", nickname='" + nickname + '\'' +
+                ", language='" + language + '\'' +
+                "nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", blog='" + blog + '\'' +
                 ", description='" + description + '\'' +
-                ", joinedTime='" + joinedTime + '\'' +
                 ", repoNumber='" + repoNumber + '\'' +
                 ", starNumber='" + starNumber + '\'' +
                 ", followerNumber='" + followerNumber + '\'' +
                 ", contribution='" + contribution + '\'' +
+                ", joinedTime='" + joinedTime + '\'' +
                 '}';
     }
 }
