@@ -21,17 +21,17 @@ public class CandidateService {
     }
 
     public void create(Candidate candidate) throws CannotCreateAccountException {
-//        try {
+        try {
             if (!isExistingUser(candidate)) {
                 candidateMapper.insert(candidate);
                 sqlSession.commit();
             } else {
                 System.out.println(candidate.getNickname() + " is duplicate!");
             }
-//        } catch (Exception e) {
-//            sqlSession.rollback();
-//            throw new CannotCreateAccountException();
-//        }
+        } catch (Exception e) {
+            sqlSession.rollback();
+            throw new CannotCreateAccountException();
+        }
     }
 
     private boolean isExistingUser(Candidate candidate) {
