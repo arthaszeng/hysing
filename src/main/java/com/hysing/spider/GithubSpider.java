@@ -1,4 +1,4 @@
-package com.hysing;
+package com.hysing.spider;
 
 import com.hysing.model.Candidate;
 import com.hysing.processor.GithubProcessor;
@@ -19,10 +19,8 @@ public class GithubSpider {
     private static String ASSET_LOCATION = "/Users/cwzeng/Documents/WorkSpace/SpiderData/Json/" + LANGUAGE;
 
 
-    public static void main(String[] args) {
-
+    public void spiderRun() {
         Spider.create(new GithubProcessor()).addUrl(START_URL).clearPipeline().addPipeline(new JsonPipeline(ASSET_LOCATION))
                 .thread(5).run();
-
     }
 }

@@ -1,7 +1,7 @@
 package com.hysing.model;
 
 
-import com.hysing.GithubSpider;
+import com.hysing.spider.GithubSpider;
 
 
 public class Candidate {
