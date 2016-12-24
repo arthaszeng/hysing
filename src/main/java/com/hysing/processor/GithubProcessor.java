@@ -3,7 +3,7 @@ package com.hysing.processor;
 import com.google.gson.Gson;
 import com.hysing.spider.GithubSpider;
 import com.hysing.exception.CannotCreateAccountException;
-import com.hysing.model.Candidate;
+import com.hysing.entity.Candidate;
 import com.hysing.service.CandidateService;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;

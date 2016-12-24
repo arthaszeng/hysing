@@ -1,6 +1,6 @@
 package com.hysing.spider;
 
-import com.hysing.model.Candidate;
+import com.hysing.entity.Candidate;
 import com.hysing.processor.GithubProcessor;
 import com.hysing.processor.JsonPipeline;
 import us.codecraft.webmagic.Spider;

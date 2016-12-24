@@ -1,7 +1,7 @@
 package com.hysing.processor;
 
 
-import com.hysing.model.Candidate;
+import com.hysing.entity.Candidate;
 
 import java.util.ArrayList;
 import java.util.List;

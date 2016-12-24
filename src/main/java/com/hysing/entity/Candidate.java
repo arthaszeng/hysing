@@ -1,4 +1,4 @@
-package com.hysing.model;
+package com.hysing.entity;
 
 
 import com.hysing.spider.GithubSpider;
@@ -118,5 +118,23 @@ public class Candidate {
 
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    @Override
+    public String toString() {
+        return "Candidate{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", description='" + description + '\'' +
+                ", joinedTime='" + joinedTime + '\'' +
+                ", repoNumber='" + repoNumber + '\'' +
+                ", starNumber='" + starNumber + '\'' +
+                ", followerNumber='" + followerNumber + '\'' +
+                ", contribution='" + contribution + '\'' +
+                ", blog='" + blog + '\'' +
+                ", language='" + language + '\'' +
+                '}';
     }
 }

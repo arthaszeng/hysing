@@ -3,12 +3,14 @@ package com.hysing.service;
 import com.hysing.exception.CannotCreateAccountException;
 import com.hysing.mapper.CandidateMapper;
 import com.hysing.mapper.MyBatisUtil;
-import com.hysing.model.Candidate;
+import com.hysing.entity.Candidate;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CandidateService {
     private final CandidateMapper candidateMapper;
     private SqlSession sqlSession;
@@ -32,6 +34,10 @@ public class CandidateService {
             sqlSession.rollback();
             throw new CannotCreateAccountException();
         }
+    }
+
+    public List<Candidate> findAllCandidate() {
+        return candidateMapper.findByNickname("TangKe");
     }
 
     private boolean isExistingUser(Candidate candidate) {

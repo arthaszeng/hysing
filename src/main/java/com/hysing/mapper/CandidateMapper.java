@@ -1,6 +1,6 @@
 package com.hysing.mapper;
 
-import com.hysing.model.Candidate;
+import com.hysing.entity.Candidate;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
