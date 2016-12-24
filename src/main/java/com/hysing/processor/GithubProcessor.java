@@ -75,7 +75,6 @@ public class GithubProcessor implements PageProcessor {
         }
     }
 
-
     private void setAttributeFromSummarizedSite(Candidate candidate, Page page, String columnId) {
         candidate.setNickname(getNameByXpath(page, columnId));
         candidate.setDescription(getDesByXpath(page, columnId));
