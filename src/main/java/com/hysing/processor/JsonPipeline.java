@@ -1,6 +1,5 @@
-package processor;
+package com.hysing.processor;
 
-import com.alibaba.fastjson.JSON;
 import com.google.gson.Gson;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
@@ -18,9 +17,6 @@ public class JsonPipeline extends FilePersistentBase implements Pipeline {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    /**
-     * new JsonFilePageModelPipeline with default path "/data/webmagic/"
-     */
     public JsonPipeline() {
         setPath("/data/webmagic");
     }

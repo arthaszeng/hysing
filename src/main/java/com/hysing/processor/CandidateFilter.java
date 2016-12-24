@@ -1,28 +1,34 @@
-package processor;
+package com.hysing.processor;
 
 
-import com.sun.deploy.util.BlackList;
+import com.hysing.model.Candidate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CandidateFilter {
-    private static final int EXPECTED_REPO_NUM = -1;
-    public static final int EXPECTED_STAR_NUM = -1;
-    private static final int EXPECTED_FOLLOWER_NUM = -1;
-    private static final int EXPECTED_CONTRIBUTION_IN_LAST_YEAR = -1;
+    public static final int EXPECTED_STAR_NUM = 10;
+    private static final int EXPECTED_REPO_NUM = 10;
+    private static final int EXPECTED_FOLLOWER_NUM = 10;
+    private static final int EXPECTED_CONTRIBUTION_IN_LAST_YEAR = 100;
+    private static final boolean CANDIDATE_FILTER_FLAG = false;
     static private List<String> blankList = new ArrayList<>();
 
     public CandidateFilter() {
         blankList.add("AndroidWearDemo");
     }
 
+    static boolean isInBlanklist(String nickname) {
+        return blankList.contains(nickname);
+    }
+
     public boolean isMrRight(Candidate candidate) {
-        return hasEnoughRepo(candidate)
+        return !CANDIDATE_FILTER_FLAG
+                || (hasEnoughRepo(candidate)
                 && hasEnoughStar(candidate)
                 && hasEnoughFollower(candidate)
                 && hasEnoughContribution(candidate)
-                && hasEmailAddress(candidate);
+                && hasEmailAddress(candidate));
     }
 
     private boolean hasEmailAddress(Candidate candidate) {
@@ -34,19 +40,14 @@ public class CandidateFilter {
     }
 
     private boolean hasEnoughFollower(Candidate candidate) {
-        return candidate.getFollowNum().contains("k") || Integer.valueOf(candidate.getFollowNum()) > EXPECTED_FOLLOWER_NUM;
+        return candidate.getFollowerNumber().contains("k") || Integer.valueOf(candidate.getFollowerNumber()) > EXPECTED_FOLLOWER_NUM;
     }
 
     private boolean hasEnoughStar(Candidate candidate) {
-        return true;
+        return candidate.getStarNumber().contains("k") || Integer.valueOf(candidate.getRepoNumber()) > EXPECTED_STAR_NUM;
     }
 
     private boolean hasEnoughRepo(Candidate candidate) {
         return candidate.getRepoNumber().contains("k") || Integer.valueOf(candidate.getRepoNumber()) > EXPECTED_REPO_NUM;
-    }
-
-
-    static boolean isInBlanklist(String nickname) {
-        return blankList.contains(nickname);
     }
 }

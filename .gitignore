@@ -11,6 +11,6 @@ hysing.ipr
 hysing.iws
 .gradle/
 build/
-/src/main/java/processor/result.json
-/src/main/java/processor/candidates_2.json
-/src/main/java/processor/candidates.json
+/src/main/java/com.hysing.processor/result.json
+/src/main/java/com.hysing.processor/candidates_2.json
+/src/main/java/com.hysing.processor/candidates.json

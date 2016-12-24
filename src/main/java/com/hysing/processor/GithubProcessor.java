@@ -1,6 +1,10 @@
-package processor;
+package com.hysing.processor;
 
 import com.google.gson.Gson;
+import com.hysing.GithubSpider;
+import com.hysing.exception.CannotCreateAccountException;
+import com.hysing.model.Candidate;
+import com.hysing.service.CandidateService;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.processor.PageProcessor;
@@ -10,13 +14,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import static processor.AttributeFetcher.*;
-import static processor.CandidateFilter.isInBlanklist;
+import static com.hysing.processor.AttributeFetcher.*;
+import static com.hysing.processor.CandidateFilter.isInBlanklist;
 
 public class GithubProcessor implements PageProcessor {
     private static int MAX_COLUMN_NUM = 10;
-    private Site site = Site.me().setSleepTime(3000);
+    private Site site = Site.me().setSleepTime(8000);
     private CandidateFilter candidateFilter = new CandidateFilter();
+    private CandidateService candidateService;
+
+    public GithubProcessor() {
+        candidateService = new CandidateService();
+    }
 
     @Override
     public void process(Page page) {
@@ -27,7 +36,7 @@ public class GithubProcessor implements PageProcessor {
                 page.putField("Candidates", GithubSpider.candidates);
                 page.putField("Potential Candidates", GithubSpider.potentialCandidates);
                 saveSummaryJsonFile();
-                System.out.println( + GithubSpider.candidates.size());
+                System.out.println(+GithubSpider.candidates.size());
             }
 
             page.addTargetRequest(targetUrl);
@@ -45,13 +54,18 @@ public class GithubProcessor implements PageProcessor {
             String nickname = page.getUrl().regex("https://github\\.com/\\w+.*").replace("https://github\\.com/", "").get();
             Candidate candidate = GithubSpider.candidates.get(nickname);
 
-            if (!isInBlanklist(nickname)) {
-                setAttributeFromDetailedSite(candidate, page);
-            } else {
+            if (isInBlanklist(nickname)) {
                 page.setSkip(true);
+            } else {
+                setAttributeFromDetailedSite(candidate, page);
             }
 
             if (candidateFilter.isMrRight(candidate)) {
+                try {
+                    candidateService.create(candidate);
+                } catch (CannotCreateAccountException e) {
+                    e.printStackTrace();
+                }
                 page.putField(nickname, candidate);
             } else {
                 GithubSpider.potentialCandidates.put(nickname, candidate);
@@ -73,7 +87,7 @@ public class GithubProcessor implements PageProcessor {
         candidate.setName(getName(page));
         candidate.setRepoNumber(getRepoNum(page));
         candidate.setStarNumber(getStarNum(page));
-        candidate.setFollowNum(getFollowerNumber(page));
+        candidate.setFollowerNumber(getFollowerNumber(page));
         candidate.setContribution(getContribution(page));
         candidate.setBlog(getBlogByCss(page));
     }

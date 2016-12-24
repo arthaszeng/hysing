@@ -1,4 +1,4 @@
-package processor;
+package com.hysing.processor;
 
 import us.codecraft.webmagic.Page;
 
