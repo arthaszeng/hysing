@@ -14,3 +14,4 @@ build/
 /src/main/java/com.hysing.processor/result.json
 /src/main/java/com.hysing.processor/candidates_2.json
 /src/main/java/com.hysing.processor/candidates.json
+/gradlew.bat

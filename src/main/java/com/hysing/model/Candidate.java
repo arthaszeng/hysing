@@ -7,7 +7,6 @@ import com.hysing.GithubSpider;
 public class Candidate {
 
     private Long id;
-
     private String nickname;
     private String name;
     private String email;
