@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -37,7 +38,10 @@ public class CandidateService {
     }
 
     public List<Candidate> findAllCandidate() {
-        return candidateMapper.findByNickname("TangKe");
+        List<Candidate> candidateList = candidateMapper.findAll();
+
+        return candidateList;
+//        return candidateHashMap;
     }
 
     private boolean isExistingUser(Candidate candidate) {

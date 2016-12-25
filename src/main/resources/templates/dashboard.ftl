@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -87,103 +87,48 @@
                 <p>
                     This is a candidate information system about recruiting bases on web spider.
                 </p>
+                <h3>Technology Stack:</h3>
+                <span class="label label-primary">Java</span>
+                <span class="label label-primary">Spring Boot</span>
+                <span class="label label-default">Mybatis</span>
+                <span class="label label-default">PostgreSQL</span>
+                <span class="label label-danger">WebMagic</span>
+                <span class="label label-info">FreeMarker</span>
+                <span class="label label-info">BootStrap</span>
                 <p>
-                    <a class="btn btn-primary btn-large" href="#">Learn more</a>
+                    </br>
+                    <a class="btn btn-primary btn-large" href="https://github.com/slizeng/hysing">Github Repository</a>
                 </p>
             </div>
             <div class="row clearfix">
                 <div class="col-md-12 column">
                     <h3>
-                        h3. 这是一套可视化布局系统.
+                        Candidate List
                     </h3>
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>
-                                编号
-                            </th>
-                            <th>
-                                产品
-                            </th>
-                            <th>
-                                交付时间
-                            </th>
-                            <th>
-                                状态
-                            </th>
+                            <th>Name</th>
+                            <th>Nickname</th>
+                            <th>Email</th>
+                            <th>Contribution</th>
+                            <th>Joined Time</th>
+                            <th>Stars</th>
+                            <th>Followers</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <#list candidateList as candidate>
                         <tr>
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                TB - Monthly
-                            </td>
-                            <td>
-                                01/04/2012
-                            </td>
-                            <td>
-                                Default
-                            </td>
+                            <td>${candidate.name!"N/A"}</td>
+                            <td>${candidate.nickname!"N/A"}</td>
+                            <td>${candidate.email!"N/A"}</td>
+                            <td>${candidate.contribution!"N/A"}</td>
+                            <td>${candidate.joinedTime!"N/A"}</td>
+                            <td>${candidate.starNumber!"N/A"}</td>
+                            <td>${candidate.followerNumber!"N/A"}</td>
                         </tr>
-                        <tr class="success">
-                            <td>
-                                1
-                            </td>
-                            <td>
-                                TB - Monthly
-                            </td>
-                            <td>
-                                01/04/2012
-                            </td>
-                            <td>
-                                Approved
-                            </td>
-                        </tr>
-                        <tr class="error">
-                            <td>
-                                2
-                            </td>
-                            <td>
-                                TB - Monthly
-                            </td>
-                            <td>
-                                02/04/2012
-                            </td>
-                            <td>
-                                Declined
-                            </td>
-                        </tr>
-                        <tr class="warning">
-                            <td>
-                                3
-                            </td>
-                            <td>
-                                TB - Monthly
-                            </td>
-                            <td>
-                                03/04/2012
-                            </td>
-                            <td>
-                                Pending
-                            </td>
-                        </tr>
-                        <tr class="info">
-                            <td>
-                                4
-                            </td>
-                            <td>
-                                TB - Monthly
-                            </td>
-                            <td>
-                                04/04/2012
-                            </td>
-                            <td>
-                                Call in to confirm
-                            </td>
-                        </tr>
+                        </#list>
                         </tbody>
                     </table>
                 </div>
