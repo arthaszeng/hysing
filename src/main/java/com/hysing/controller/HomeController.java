@@ -17,8 +17,8 @@ public class HomeController {
 
     @RequestMapping({"/", "/home"})
     public String index(ModelMap map) {
-        map.put("candidateList", candidateService.findAllCandidate());
-        return "dashboard";
+
+        return "home";
     }
 
 }
