@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-cn" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,15 +21,15 @@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">Toggle navigation</span><span
                             class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                    <a class="navbar-brand" href="#">Hysing</a>
+                    <a class="navbar-brand" href="/">Hysing</a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="#">Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li>
-                            <a href="#">Candidates</a>
+                            <a href="/candidate">Candidates</a>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Spider Control<strong class="caret"></strong></a>
@@ -80,21 +80,26 @@
                     </ul>
                 </div>
             </nav>
-            <div class="jumbotron">
+            <div class="jumbotron well">
+                </br>
                 <h1>
                     Hi Hysing!
                 </h1>
                 <p>
-                    This is a candidate information system about recruiting bases on web spider.
+                    This is a candidate information system for recruiting team.</br>
+                    Developing...
                 </p>
-                <h3>Technology Stack:</h3>
-                <span class="label label-primary">Java</span>
-                <span class="label label-primary">Spring Boot</span>
-                <span class="label label-default">Mybatis</span>
-                <span class="label label-default">PostgreSQL</span>
-                <span class="label label-danger">WebMagic</span>
-                <span class="label label-info">FreeMarker</span>
-                <span class="label label-info">BootStrap</span>
+                <div>
+                    <h3>Technology Stack:
+                    <span class="label label-primary">Java</span>
+                    <span class="label label-primary">Spring Boot</span>
+                    <span class="label label-default">Mybatis</span>
+                    <span class="label label-default">PostgreSQL</span>
+                    <span class="label label-danger">WebMagic</span>
+                    <span class="label label-info">FreeMarker</span>
+                    <span class="label label-info">BootStrap</span>
+                    </h3>
+                </div>
                 <p>
                     </br>
                     <a class="btn btn-primary btn-large" href="https://github.com/slizeng/hysing">Github Repository</a>
@@ -108,8 +113,8 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>Name</th>
                             <th>Nickname</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Contribution</th>
                             <th>Joined Time</th>
@@ -120,8 +125,8 @@
                         <tbody>
                         <#list candidateList as candidate>
                         <tr>
-                            <td>${candidate.name!"N/A"}</td>
                             <td>${candidate.nickname!"N/A"}</td>
+                            <td>${candidate.name!"N/A"}</td>
                             <td>${candidate.email!"N/A"}</td>
                             <td>${candidate.contribution!"N/A"}</td>
                             <td>${candidate.joinedTime!"N/A"}</td>
@@ -131,6 +136,15 @@
                         </#list>
                         </tbody>
                     </table>
+                    <ul class="pagination pagination-sm" style="float: right">
+                        <li><a href="#">Prev</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -138,10 +152,11 @@
 </div>
 <footer class="footer">
     <div class="container">
-        <p class="text-muted">©2016 Arthas Zeng</p>
+        <p class="text-muted">©2016 Contributed By Arthas Zeng, cwzeng@thoughtworks.com</p>
     </div>
 </footer>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 </body>
 <div></div>
 </html>
+
