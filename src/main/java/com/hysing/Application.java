@@ -9,16 +9,21 @@ public class Application {
     private static GithubSpider githubSpider;
 
     public static void main(String[] args) {
-        System.out.println("App starts\n\n\n\n\n\n\n");
-        githubSpider = new GithubSpider();
+//        spiderRun();
+        springRun();
+    }
 
+    private static void spiderRun() {
         try {
-//            githubSpider.spiderRun();
-            System.out.println("Skip spider..............................");
+            githubSpider = new GithubSpider();
+            githubSpider.spiderRun();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    private static void springRun() {
+        System.out.println("Skip spider..............................");
         SpringApplication.run(Application.class);
     }
 }

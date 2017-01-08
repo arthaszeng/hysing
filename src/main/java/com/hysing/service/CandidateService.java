@@ -28,6 +28,7 @@ public class CandidateService {
             if (!isExistingUser(candidate)) {
                 candidateMapper.insert(candidate);
                 sqlSession.commit();
+                System.out.println(candidate.getNickname() + " has been added!");
             } else {
                 System.out.println(candidate.getNickname() + " is duplicate!");
             }
